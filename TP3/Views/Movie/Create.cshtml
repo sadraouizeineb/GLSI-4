@@ -1,0 +1,33 @@
+﻿@model Movie
+
+<h2>Ajouter un film</h2>
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" placeholder="Enter Movie name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MovieAdded"></label>
+        <input asp-for="MovieAdded" type="datetime-local" class="form-control" />
+        <span asp-validation-for="MovieAdded" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GenreId">Genre</label>
+        <select asp-for="GenreId" asp-items="ViewBag.Genres" class="form-control">
+            <option value="">Sélectionner un genre</option>
+        </select>
+        <span asp-validation-for="GenreId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhotoPath">Photo</label>
+        <input type="file" name="photo" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Info</button>
+    <a asp-action="Index" class="btn btn-success">Back To List</a>
+</form>

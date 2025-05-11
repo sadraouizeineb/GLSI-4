@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Movie>
+
+<h2>Liste des films</h2>
+<a asp-action="Create" class="btn btn-primary">Ajouter un film</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Date d'ajout</th>
+            <th>Genre</th>
+            <th>Photo</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Name</td>
+                <td>@movie.MovieAdded.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@movie.Genre.Name</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(movie.PhotoPath))
+                    {
+                        <img src="@movie.PhotoPath" alt="Photo" width="100" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

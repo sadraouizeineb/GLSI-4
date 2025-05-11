@@ -1,0 +1,43 @@
+﻿@model IEnumerable<tp4.Models.Movie>
+
+@{
+    ViewBag.Title = "Liste des Films";
+}
+
+<h2 class="mb-4">@ViewBag.Title</h2>
+
+
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-secondary btn-sm">Tous les films</a> <!-- Afficher tous les films -->
+    <a asp-action="OrderedByTitle" class="btn btn-secondary btn-sm">Trier par Titre par ordre croissant</a> <!-- Trier les films par titre -->
+    <a asp-action="OrderedByTitleDesc" class="btn btn-secondary btn-sm">Trier par Titre Titre par ordre Décroissant</a> <!-- Trier les films par titre -->
+    <a asp-action="ByGenreName" asp-route-genreName="Action" class="btn btn-secondary btn-sm">Genre: Action</a> <!-- Filtrer par genre "Action" -->
+    <a asp-action="ByGenreName" asp-route-genreName="Drame" class="btn btn-secondary btn-sm">Genre: Drama</a> <!-- Filtrer par genre "Drama" -->
+</div>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Ajouter un film</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Titre</th>
+            <th>Genre</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@(movie.Genre != null ? movie.Genre.Name : "Non spécifié")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@movie.Id" class="btn btn-info btn-sm">Détails</a>
+                    <a asp-action="Edit" asp-route-id="@movie.Id" class="btn btn-warning btn-sm">Modifier</a>
+                    <a asp-action="Delete" asp-route-id="@movie.Id" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

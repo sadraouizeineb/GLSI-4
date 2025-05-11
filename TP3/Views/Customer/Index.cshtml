@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EFRelations.Models.Customer>
+
+@{
+    ViewData["Title"] = "Customer List";
+}
+
+<h1>Customer List</h1>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Create New Customer</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Discount rate</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.Name</td>
+                <td>@customer.MembershipType.DiscountRate</td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = customer.CustomerId })">Details</a> |
+                    <a href="@Url.Action("Edit", new { id = customer.CustomerId })">Edit</a> |
+                    <a href="@Url.Action("Delete", new { id = customer.CustomerId })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
